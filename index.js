@@ -16,14 +16,9 @@ dotenv.config();
 
 const app = express();
 
-// Middleware
-app.use(bodyParser.json());
-const corsOptions = {
-    origin: 'http://localhost:3000', // allow requests from this origin
-    optionsSuccessStatus: 200,
-};
+app.use(cors());
 
-app.use(cors(corsOptions));
+app.use(bodyParser.json());
 
 // MongoDB Connection
 const mongoURI = process.env.MONGO_URI;
