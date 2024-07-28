@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
-dotenv.config(); // Ensure this is at the top
+ // Ensure this is at the top
 
 import userRoutes from './routes/user.js';
 import adminRoutes from './routes/admin.js';
@@ -12,11 +12,18 @@ import orderRoutes from './routes/order.js';
 import apiRoutes from './routes/api.js';
 import walletRoutes from './routes/wallet.js';
 
+dotenv.config();
+
 const app = express();
 
 // Middleware
 app.use(bodyParser.json());
-app.use(cors());
+const corsOptions = {
+    origin: 'http://localhost:3000', // allow requests from this origin
+    optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 
 // MongoDB Connection
 const mongoURI = process.env.MONGO_URI;
